@@ -1,4 +1,4 @@
-import Product from "../models/product.model.js"
+import Product from "../models/product.model.js";
 import mongoose from "mongoose";
 
 export const getProducts = async (req, res) => {
@@ -9,7 +9,7 @@ export const getProducts = async (req, res) => {
         console.error("Error in fetching Product: ", err.message);
         res.status(500).json({ success: false, message: "Server Error" });
     }
-}
+};
 
 export const createProducts = async (req, res) => {
     const product = req.body; // data sent by user
@@ -29,7 +29,7 @@ export const createProducts = async (req, res) => {
         console.error("Error in Create Product: ", err.message);
         res.status(500).json({ success: false, message: "Server Error" });
     }
-}
+};
 
 export const updateProducts = async (req, res) => {
     const id = req.params.id;
@@ -56,17 +56,23 @@ export const updateProducts = async (req, res) => {
         console.error("Error in updating product: ", err.message);
         res.status(500).json({ success: false, message: "Server Error" });
     }
-}
+};
 
 export const deleteProducts = async (req, res) => {
     const { id } = req.params;
     // console.log(id)
+
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+        return res
+            .status(404)
+            .json({ success: false, message: "Product Not Found" });
+    }
 
     try {
         await Product.findByIdAndDelete(id);
         res.status(200).json({ success: true, message: "Product Deleted" });
     } catch (err) {
         // console.error("Error in Delete Product: ", err.message)
-        res.status(404).json({ success: false, message: "Product not found" });
+        res.status(500).json({ success: false, message: "Server Error" });
     }
-}
+};
