@@ -12,6 +12,7 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "create-vite": "^5.5.3",
     "dotenv": "^16.4.5",
     "express": "^4.21.0",
     "mongoose": "^8.6.2"
