@@ -49,8 +49,8 @@ export const updateProducts = async (req, res) => {
             id,
             product /*we only need to pass the updated fields*/,
             { new: true }
-        ); // `{new: true}` allows us to get the updated object
-        res.status(200).json({ success: true, data: updatedProduct }); // instead of the old object
+        ); // `{new: true}` allows us to get the updated object instead of the old object
+        res.status(200).json({ success: true, data: updatedProduct });
         // console.log(product)
     } catch (err) {
         console.error("Error in updating product: ", err.message);
