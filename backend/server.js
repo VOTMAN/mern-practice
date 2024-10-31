@@ -10,7 +10,7 @@ app.use(express.json()); // allows us to accept json data in req.body
 
 app.use("/api/products", productRoutes);
 
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 3001;
 app.listen(port, () => {
     connectDB();
     console.log(`Server started on http://localhost:${port}`);
